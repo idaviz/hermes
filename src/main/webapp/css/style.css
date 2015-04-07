@@ -1,0 +1,134 @@
+#login-btn{
+    background-color: #ff0000;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: #FFFFFF  /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: #FFFFFF; /*BACKGROUND color for active*/
+background-color: #ff0000;
+}
+
+.navbar-default {
+    background-color:  #ff0000;
+    border-color:  #ff0000;
+}
+
+  .dropdown-menu > li > a:hover,
+   .dropdown-menu > li > a:focus {
+    color: #FFFFFF; 
+   text-decoration: none;
+  background-color: #ff0000;  /*change color of links in drop down here*/
+   }
+
+ .nav > li > a:hover,
+ .nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+  }
+
+
+  .navbar-default .navbar-nav > li > a {
+   color: white; /*Change active text color here*/
+    }
+
+    
+    
+    
+    
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(../pics/jumbotron_hermes.jpg);
+    background-position: 0% 25%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: black 0.9em 0.9em 0.9em;
+}
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+/* --- Style --- */
+
+.navbar-default {
+    background-color:#ff0000;
+    border-color: #ff0000;
+    .navbar-brand {
+        color:  #ecf0f1;
+        &:hover, &:focus {
+            color: #ffbbbc; }}
+    .navbar-nav {
+        > li {
+            > a {
+                color:  #ecf0f1;
+                &:hover, &:focus {
+                    color: #ffbbbc;   }}}
+        .active {
+            > a, > a:hover, > a:focus {
+                color: #ffbbbc;
+                background-color: #ff0000; }}
+        .open {
+            > a, > a:hover, > a:focus {
+                color: #ffbbbc;
+                background-color: #ff0000;
+                .caret {
+                    border-top-color: #ffbbbc;
+                    border-bottom-color: #ffbbbc; }}}
+        > .dropdown {
+            > a {
+                .caret {
+                    border-top-color:  #ecf0f1;
+                    border-bottom-color:  #ecf0f1; }
+                &:hover, &:focus {
+                    .caret {
+                        border-top-color: #ffbbbc;
+                        border-bottom-color: #ffbbbc; }}}}}
+    .navbar-toggle {
+        border-color: #ff0000;
+        &:hover, &:focus {
+            background-color: #ff0000; }
+        .icon-bar {
+            background-color:  #ecf0f1; }}}
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color:  #ecf0f1;
+        &:hover, &:focus {
+            color: #ffbbbc;
+            background-color: #ff0000;}}
+}
