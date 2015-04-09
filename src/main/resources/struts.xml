@@ -10,10 +10,27 @@
     <constant name="struts.custom.i18n.resources" value="global" />
     
     <package name="hermes" extends="struts-default">
-       
-       
         <action name="index">
             <result>/WEB-INF/jsp/index.jsp</result>
+        </action>
+        
+        <action name="mainUser">
+            <result>/WEB-INF/jsp/user.main.jsp</result>
+        </action>
+        
+        
+        <!-- Log in / log out -->
+        <action name="authenticate">
+            <result>/WEB-INF/jsp/index.jsp</result>
+        </action>
+        
+        <action name="Connect" class="aas.hermes.action.AuthenticateAction" method="connect">
+            <result name="input">/WEB-INF/jsp/index.jsp</result>
+            <result type="redirectAction">mainUser</result> 
+        </action>
+
+        <action name="Disconnect" class="aas.hermes.action.AuthenticateAction" method="disconnect">
+            <result type="redirectAction">index</result> 
         </action>
         
     </package>

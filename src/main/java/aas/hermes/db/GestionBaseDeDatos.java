@@ -1,7 +1,7 @@
 /*
  * 
  */
-package aas.hermes;
+package aas.hermes.db;
 
 /**
  * Paquete con métodos para el acceso a la base de datos del proyecto.

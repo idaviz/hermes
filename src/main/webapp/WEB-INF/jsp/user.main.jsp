@@ -21,28 +21,21 @@
     <body>
         <div class="container">
             <!-- Barra de navegación -->
-            <%@ include file="/WEB-INF/jsp/inc/navbar.jsp" %>
-            <div class="row row-offcanvas row-offcanvas-right">
-                <div class="container">
-                    <div class="jumbotron">
-                        <h1><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Hermes</h1>
-                        <p>ACCIONA Airport Services type B messaging retrieval system.</p>
+            <%@ include file="/WEB-INF/jsp/inc/private.navbar.jsp" %>
+                <div class="row row-offcanvas row-offcanvas-right">
+                    <div class="container">
+                        <div class="jumbotron">
+                            <h1><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Hermes</h1>
+                            <p>ACCIONA Airport Services type B messaging retrieval system.</p>
                     </div>
                     <br>
                     <br>
                     <div class="container">
 
                         
-
-                        <s:form class="form-signin" theme="bootstrap" method="post" action="Connect">
-                            <h2 class="form-signin-heading">Please, sign in...</h2>
-                            <s:textfield name="user" id="user" class="form-control" placeholder="Your user"/>
-                            <s:password name="password" id="password" class="form-control" placeholder="Your password"/>
-                            <s:submit id="login-btn" value="Log in" class="btn btn-lg btn-danger btn-block" type="button"/> 
-                        </s:form>
                     </div> <!-- /container -->
                 </div><!--/row-->
-
+                
             </div><!--/.container-->
     </body>
     <br><br>
