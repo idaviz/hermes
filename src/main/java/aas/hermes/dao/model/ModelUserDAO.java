@@ -19,8 +19,6 @@ public class ModelUserDAO extends ModelDAO {
     ResultSet resultado = null;
     
     public User getUser(String idUser) {
-        
-        System.out.println("idUser que se quiere buscar en la tabla tb_user >> "+idUser);
         // Variables 
         PreparedStatement consulta = null;
         User user = null;
@@ -33,9 +31,7 @@ public class ModelUserDAO extends ModelDAO {
             consultaString = "SELECT * FROM tb_user WHERE user=?";
             // Se prepara la consulta
             consulta = conexion.prepareStatement(consultaString);
-    
             consulta.setString(1, idUser);
-    System.out.println(consulta);
             // Ejecución de la consulta 
             resultado = consulta.executeQuery();
             // Se almacena el resultado en el objeto usuario 

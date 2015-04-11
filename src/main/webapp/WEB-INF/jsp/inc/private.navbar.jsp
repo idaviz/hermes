@@ -28,6 +28,12 @@
                     </ul>
                 </li>
             </ul>
+            
+            <form class="navbar-form navbar-right" action="Disconnect.action">
+                <s:set name="usuario" value="#session.user"/>
+                    <s:if test="%{#usuario==null}"></s:if>
+                    <s:else><button type="submit" class="btn btn-danger">Close session <s:property value="#usuario" /></button></s:else>
+            </form>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
 </nav>

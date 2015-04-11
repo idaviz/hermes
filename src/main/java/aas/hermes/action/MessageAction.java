@@ -1,20 +1,20 @@
 /*
- * 
+ * Controller for data model Message.
  */
 package aas.hermes.action;
+
+/**
+ * Package que define el controlador para la el modelo de datos Message
+ * @author David
+ */
 
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
-import aas.hermes.dao.javabeans.User;
-import aas.hermes.dao.model.ModelUserDAO;
+import aas.hermes.dao.javabeans.Message;
+import aas.hermes.dao.model.ModelMessageDAO;
 
-@SuppressWarnings("serial")
-/**
- * Controlador para el proceso de autenticación de usuarios en la web.
- * @author dgarcia25
- */
-public class AuthenticateAction extends ActionSupport implements SessionAware {
+public class MessageAction extends ActionSupport implements SessionAware{
 
     private String user;
     private String password;
@@ -74,4 +74,5 @@ public class AuthenticateAction extends ActionSupport implements SessionAware {
         this.sessionMap.clear();
         return SUCCESS;
     }
+    
 }

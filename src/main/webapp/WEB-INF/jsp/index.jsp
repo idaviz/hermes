@@ -25,15 +25,12 @@
             <div class="row row-offcanvas row-offcanvas-right">
                 <div class="container">
                     <div class="jumbotron">
-                        <h1><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Hermes</h1>
+                        <h1>Hermes</h1>
                         <p>ACCIONA Airport Services type B messaging retrieval system.</p>
                     </div>
                     <br>
                     <br>
                     <div class="container">
-
-                        
-
                         <s:form class="form-signin" theme="bootstrap" method="post" action="Connect">
                             <h2 class="form-signin-heading">Please, sign in...</h2>
                             <s:textfield name="user" id="user" class="form-control" placeholder="Your user"/>
