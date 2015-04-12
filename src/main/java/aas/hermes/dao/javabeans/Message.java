@@ -3,6 +3,8 @@
  */
 package aas.hermes.dao.javabeans;
 
+import java.util.Date;
+
 /**
  * Package de definición del javabean Message.
  * @author David
@@ -11,9 +13,9 @@ public class Message {
     private String smi;
     private String tex;
     private String tex_flt;
-    private String tex_date;
+    private Date tex_date;
     private String tex_reg;
-    private int id;
+    private int Id;
     
     /**
      * Constructor de clase Message. Crea una instancia a la clase Message.
@@ -73,7 +75,7 @@ public class Message {
      * Devuelve el valor del atritbuto tex_date
      * @return tex_date: fecha del vuelo del mensaje.
      */
-    public String getTex_date() {
+    public Date getTex_date() {
         return tex_date;
     }
 
@@ -81,7 +83,7 @@ public class Message {
      * Asigna un valor al campo tex_date
      * @param tex_date fecha del vuelo del mensaje.
      */
-    public void setTex_date(String tex_date) {
+    public void setTex_date(Date tex_date) {
         this.tex_date = tex_date;
     }
 
@@ -106,7 +108,7 @@ public class Message {
      * @return Id: identificador único del mensaje.
      */
     public int getId() {
-        return id;
+        return Id;
     }
 
     /**
@@ -114,8 +116,6 @@ public class Message {
      * @param id identificador único del mensaje.
      */
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
-    
-    
 }

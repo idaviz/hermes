@@ -31,10 +31,9 @@
                     <br>
                     <br>
                     <div class="container">
-                            <s:form class="form-signin" theme="bootstrap" method="post" action="XXX">
+                            <s:form class="form-signin" theme="bootstrap">
                                 <h2 class="form-signin-heading">Please, choose a flight...</h2>
-                                
-                
+                                <s:select name="flight" list="flightList"/>
                                 <s:submit id="login-btn" value="Search" class="btn btn-lg btn-danger btn-block" type="button"/> 
                             </s:form>
                     </div> <!-- /container -->

@@ -14,7 +14,8 @@
             <result>/WEB-INF/jsp/index.jsp</result>
         </action>
         
-        <action name="mainUser">
+        <action name="mainUser" class="aas.hermes.action.MessageAction" method="flightList">
+            <result name="input">/WEB-INF/jsp/user.main.jsp</result>
             <result>/WEB-INF/jsp/user.main.jsp</result>
         </action>
         

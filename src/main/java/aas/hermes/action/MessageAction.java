@@ -5,35 +5,78 @@ package aas.hermes.action;
 
 /**
  * Package que define el controlador para la el modelo de datos Message
+ *
  * @author David
  */
-
 import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import aas.hermes.dao.javabeans.Message;
 import aas.hermes.dao.model.ModelMessageDAO;
+import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MessageAction extends ActionSupport implements SessionAware{
+public class MessageAction extends ActionSupport implements SessionAware, Preparable, ModelDriven {
 
-    private String user;
-    private String password;
+    private Message message;
+    private String flightNumber;
+    private String smi;
+    private List<String> flightList;
+    private int idFlight;
+    private int idMessage;
     private Map<String, Object> sessionMap;
 
-    public String getUser() {
-        return user;
+    public String getSmi() {
+        return smi;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setSmi(String smi) {
+        this.smi = smi;
     }
 
-    public String getPassword() {
-        return password;
+    
+    public int getIdMessage() {
+        return idMessage;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setIdMessage(int idMessage) {
+        this.idMessage = idMessage;
+    }
+
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public List<String> getFlightList() {
+         ModelMessageDAO ModelMessageDAO = new ModelMessageDAO();
+        flightList = (ArrayList<String>) ModelMessageDAO.getFlightList();
+        return flightList;
+    }
+
+    public void setFlightList(List<String> flightList) {
+        this.flightList = flightList;
+    }
+
+    public int getIdFlight() {
+        return idFlight;
+    }
+
+    public void setIdFlight(int idFlight) {
+        this.idFlight = idFlight;
     }
 
     /**
@@ -45,34 +88,36 @@ public class MessageAction extends ActionSupport implements SessionAware{
         this.sessionMap = map;
     }
 
-    // descriptores de acceso
-    public String connect() {
-        System.out.println("this.user que se busca en la función connect >> "+this.user);
-        ModelUserDAO objetoUser = new ModelUserDAO();
-        User userFound = new User();
-        // buscamos el usuario en la base de datos a partir del usuario introducido
-        userFound = objetoUser.getUser(this.user);
-        // verificar si se ha introducido un identificador y una contraseña
-        if ((user != null && password != null)&&(userFound!=null)) {
-            //verificar si el usuari recuperado de la base de datos coincide con el usuario introducido
-            if (user.equals(userFound.getUser()) && password.equals(userFound.getPassword())) {
-                // autenticación correcta,guardar el valor en la sesión
-                System.out.println("usuario y contraseña correctos!");
-                this.sessionMap.put("authentication", true);
-                 this.sessionMap.put("user", user);
-                return SUCCESS;
-            }
+    /**
+     *
+     * @throws Exception
+     */
+    @Override
+    public void prepare() throws Exception {
+        ModelMessageDAO modelMessageDAO = new ModelMessageDAO();
+        // en creación, crear un nuevo objeto vacío 
+        if (idMessage == 0) {
+            message = new Message();
+        } // en modificación, devolver la información del objeto 
+        else {
+
+            message = modelMessageDAO.getMessage(idMessage);
         }
-        return INPUT;
     }
 
     /**
-    *
-    */
-    public String disconnect() {
-        // vaciar la sesión del usuario
-        this.sessionMap.clear();
-        return SUCCESS;
+     *
+     * @return
+     */
+    @Override
+    public Object getModel() {
+        return message;
     }
     
+    // devolver la lista de clientes tras la recuperación 
+    public String flightList() {
+        ModelMessageDAO ModelMessageDAO = new ModelMessageDAO();
+        flightList = (ArrayList<String>) ModelMessageDAO.getFlightList();
+        return SUCCESS;
+    }
 }
