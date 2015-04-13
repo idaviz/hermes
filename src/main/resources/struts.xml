@@ -19,6 +19,10 @@
             <result>/WEB-INF/jsp/user.main.jsp</result>
         </action>
         
+        <action name="messagesUser" class="aas.hermes.action.MessageAction" method="flightMessages">
+            <result name="success">/WEB-INF/jsp/user.messages.jsp</result>
+        </action>
+        
         
         <!-- Log in / log out -->
         <action name="authenticate">

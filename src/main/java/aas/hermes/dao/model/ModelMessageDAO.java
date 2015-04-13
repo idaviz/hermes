@@ -24,6 +24,7 @@ public class ModelMessageDAO extends ModelDAO {
     Connection conexion = null;
     ResultSet resultado = null;
     private static List<String> flightList;
+    private static List<Message> listaResultados;
 
     /**
      * Devuelve un objeto de la clase Message.
@@ -135,6 +136,64 @@ System.out.println("Resultado de la consulta >>"+resultado);
         System.out.println(flightList);
         return flightList;
     }
+    
+    
+    // devolver la lista de obras 
+    public List<Message> getListaResultados(String clave) {
+        // Variables 
+        PreparedStatement consulta = null;
+        Message message = null;
+        String consultaString = null;
+        listaResultados = new ArrayList<Message>();
+
+        try {
+            // Apertura de una conexión 
+            conexion = super.getConnection();
+
+            // consulta de lista de obras 
+            consultaString = "SELECT * FROM tb_messages WHERE tex_flt LIKE '%" + clave + "%'";
+
+            consulta = conexion.prepareStatement(consultaString);
+
+            // Ejecución de la consulta 
+            resultado = consulta.executeQuery();
+
+            // Se almacena el resultado en una lista 
+            if (resultado != null) {
+                while (resultado.next()) {
+                    // Se efectúa el mapping de los atributos con los campos de la tabla SQL 
+                    message = mapperMessage(resultado);
+
+                    // Se añade el objeto a la lista de obrass
+                    listaResultados.add((Message) message);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error en la consulta de la clase ModelMessageDAO función getListaResultados");
+        } finally {
+            try {
+                // Cierre de la conexión 
+                if (resultado != null) {
+
+                    GestionBaseDeDatos.closeResulset(resultado);
+                }
+                if (consulta != null) {
+
+                    GestionBaseDeDatos.closeRequest(consulta);
+                }
+                if (conexion != null) {
+
+                    GestionBaseDeDatos.closeConnection(conexion);
+                }
+            } catch (Exception ex) {
+                System.out.println("Error en el cierre de la conexion con la base de datos en la clase ModelMessageDAO función getListaResultados");
+            }
+        }
+
+        // Devolver la lista de obras 
+        return listaResultados;
+    }
+    
 
     // Realizar el mapping relacional hacia objeto 
     public Message mapperMessage(ResultSet resultado) throws ParseException {

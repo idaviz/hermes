@@ -21,12 +21,32 @@ import java.util.List;
 public class MessageAction extends ActionSupport implements SessionAware, Preparable, ModelDriven {
 
     private Message message;
+    private String flight;
     private String flightNumber;
     private String smi;
     private List<String> flightList;
     private int idFlight;
     private int idMessage;
     private Map<String, Object> sessionMap;
+    private List<Message> listaResultados;
+
+    public Map<String, Object> getSessionMap() {
+        return sessionMap;
+    }
+
+    public void setSessionMap(Map<String, Object> sessionMap) {
+        this.sessionMap = sessionMap;
+    }
+
+    
+
+    public String getFlight() {
+        return flight;
+    }
+
+    public void setFlight(String flight) {
+        this.flight = flight;
+    }
 
     public String getSmi() {
         return smi;
@@ -118,6 +138,22 @@ public class MessageAction extends ActionSupport implements SessionAware, Prepar
     public String flightList() {
         ModelMessageDAO ModelMessageDAO = new ModelMessageDAO();
         flightList = (ArrayList<String>) ModelMessageDAO.getFlightList();
+        
         return SUCCESS;
+    }
+    
+    public String flightMessages(){
+        ModelMessageDAO ModelMessageDAO = new ModelMessageDAO();
+        listaResultados = (ArrayList<Message>) ModelMessageDAO.getListaResultados(this.flight);
+        this.sessionMap.put("flight", this.flightNumber);
+        return SUCCESS;
+        
+    }
+    public List<Message> getListaResultados() {
+        return listaResultados;
+    }
+
+    public void setListaResultados(List<Message> listaResultados) {
+        this.listaResultados = listaResultados;
     }
 }

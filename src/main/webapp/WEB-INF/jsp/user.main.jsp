@@ -25,20 +25,19 @@
             <div class="row row-offcanvas row-offcanvas-right">
                 <div class="container">
                     <div class="jumbotron">
-                        <h1><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Hermes</h1>
+                        <h1>Hermes</h1>
                         <p>ACCIONA Airport Services type B messaging retrieval system.</p>
                     </div>
                     <br>
                     <br>
                     <div class="container">
-                            <s:form class="form-signin" theme="bootstrap">
+                            <s:form class="form-signin" theme="bootstrap" action="messagesUser">
                                 <h2 class="form-signin-heading">Please, choose a flight...</h2>
                                 <s:select name="flight" list="flightList"/>
                                 <s:submit id="login-btn" value="Search" class="btn btn-lg btn-danger btn-block" type="button"/> 
                             </s:form>
                     </div> <!-- /container -->
                 </div><!--/row-->
-
             </div><!--/.container-->
     </body>
     <br><br>
