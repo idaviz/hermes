@@ -35,45 +35,52 @@
                         <div class="panel-group" id="accordion" role="tablist" >
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingOne">
+                                     
                                     <h4 class="panel-title">
                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            PSM
+                                            PSM <span class="badge"></span>
                                         </a>
                                     </h4>
                                 </div>
                                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                     <div class="panel-body">
-                                        <div>
-                                            <s:iterator value="listaResultados">
-                                                <s:if test="smi==\"PSM\"">
-                                                    <s:property value="smi"/>
-                                                    <s:property value="tex"/>
-                                                    <br/>
-                                                </s:if>
-                                            </s:iterator>
-                                        </div>                                    
+                                       
+                                        <s:iterator value="listaResultados">
+                                            <s:if test="smi==\"PSM\"">
+                                                <div class="well well-sm">
+                                                    <samp>
+                                                       
+                                                        <s:property escapeHtml="false" value="tex"/>
+                                                        <br/>
+                                                    </samp>
+                                                </div>
+                                            </s:if>
+                                        </s:iterator>                                
                                     </div>
                                 </div>
                             </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="headingTwo">
+                                    
                                     <h4 class="panel-title">
                                         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            LDM
+                                            LDM <span class="badge"></span>
                                         </a>
                                     </h4>
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                     <div class="panel-body">
-                                        <div>
-                                            <s:iterator value="listaResultados">
-                                                <s:if test="smi==\"LDM\"">
-                                                    <s:property value="smi"/>
-                                                    <s:property value="tex"/>
-                                                    <br/>
-                                                </s:if> 
-                                            </s:iterator>
-                                        </div>                                    
+                                        <s:iterator value="listaResultados">
+                                            <s:if test="smi==\"LDM\"">
+                                                <div class="well well-sm">
+                                                    <samp>
+                                                         
+                                                        <s:property escapeHtml="false" value="tex"/>
+                                                        <br/>
+                                                    </samp>
+                                                </div>
+                                            </s:if> 
+                                        </s:iterator>                                 
                                     </div>
                                 </div>
                             </div>
@@ -87,15 +94,16 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                                     <div class="panel-body">
-                                        <div>
-                                            <s:iterator value="listaResultados">
-                                                <s:if test="smi==\"MVT\"">
-                                                    <s:property value="smi"/>
-                                                    <s:property value="tex"/>
-                                                     <br/>
-                                                </s:if>
-                                            </s:iterator>
-                                        </div>                                    
+                                        <s:iterator value="listaResultados">
+                                            <s:if test="smi==\"MVT\"">
+                                                <div class="well well-sm">
+                                                    <samp>
+                                                        <s:property escapeHtml="false" value="tex"/>
+                                                        <br/>
+                                                    </samp>
+                                                </div>
+                                            </s:if>
+                                        </s:iterator>                     
                                     </div>
                                 </div>
                             </div>

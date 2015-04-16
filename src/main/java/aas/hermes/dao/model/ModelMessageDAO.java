@@ -210,7 +210,8 @@ System.out.println("Resultado de la consulta >>"+resultado);
             if (resultado.getString("tex") == null) {
                 message.setTex("");
             } else {
-                message.setTex(resultado.getString("tex"));
+                //message.setTex(resultado.getString("tex").replaceAll(" ", "<br/>"));
+                message.setTex(resultado.getString("tex").replace("\n\n","<br>"));
             }
 
             if (resultado.getString("tex_flt") == null) {
