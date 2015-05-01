@@ -21,7 +21,7 @@
     <body>
         <div class="container">
             <!-- Barra de navegación -->
-            <%@ include file="/WEB-INF/jsp/inc/user.navbar.jsp" %>
+            <%@ include file="/WEB-INF/jsp/inc/navbar.jsp" %>
             <div class="row row-offcanvas row-offcanvas-right">
                 <div class="container">
                     <div class="jumbotron">
@@ -31,13 +31,10 @@
                     <br>
                     <br>
                     <div class="container">
-                            <s:form class="form-signin" theme="bootstrap" action="messages">
-                                <h2 class="form-signin-heading">Please, choose a flight...</h2>
-                                <s:select name="flight" list="flightList"/>
-                                <s:submit id="login-btn" value="Search" class="btn btn-lg btn-danger btn-block" type="button"/> 
-                            </s:form>
+                        <p>Uuuups...This never should have happened. </p>
                     </div> <!-- /container -->
                 </div><!--/row-->
+
             </div><!--/.container-->
     </body>
     <br><br>

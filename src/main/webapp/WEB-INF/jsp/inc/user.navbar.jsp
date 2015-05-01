@@ -12,11 +12,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <s:url action="mainUser" var="newflightInputLink"/>
+                <s:url action="main" var="newflightInputLink"/>
                 <li><a href="${newflightInputLink}"><s:text name="Select new flight" /></a></li>                
             </ul>
             
-            <form class="navbar-form navbar-right" action="Disconnect.action">
+            <form class="navbar-form navbar-right" action="Disconnect">
                 <s:set name="usuario" value="#session.user"/>
                     <s:if test="%{#usuario==null}"></s:if>
                     <s:else><button type="submit" class="btn btn-danger">Close session <s:property value="#usuario" /></button></s:else>

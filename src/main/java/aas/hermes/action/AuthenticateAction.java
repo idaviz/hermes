@@ -18,6 +18,7 @@ public class AuthenticateAction extends ActionSupport implements SessionAware {
 
     private String user;
     private String password;
+    private String role;
     private Map<String, Object> sessionMap;
 
     public String getUser() {
@@ -34,6 +35,14 @@ public class AuthenticateAction extends ActionSupport implements SessionAware {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     /**
@@ -60,6 +69,7 @@ public class AuthenticateAction extends ActionSupport implements SessionAware {
                 System.out.println("usuario y contraseña correctos!");
                 this.sessionMap.put("authentication", true);
                  this.sessionMap.put("user", user);
+                 this.sessionMap.put("role", userFound.getRole());
                 return SUCCESS;
             }
         }

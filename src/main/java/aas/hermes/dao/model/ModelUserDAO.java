@@ -68,6 +68,97 @@ public class ModelUserDAO extends ModelDAO {
         return user;
     }
 
+    // agregar un usuario a la base
+    public int agregarUsuario(User user) {
+        // Variables
+        PreparedStatement consulta = null;
+        String consultaString = null;
+        int codigoError = 0;
+        try {
+            // Apertura de una conexión
+            conexion = super.getConnection();
+            // Creación de la consulta
+            consultaString = "INSERT INTO tb_user (user, password, role) VALUES (?,?,?)";
+     
+            // Preparación de la consulta
+            consulta=conexion.prepareStatement(consultaString);
+            consulta.setString(1, user.getUser());
+            consulta.setString(2, user.getPassword());
+            consulta.setString(3, user.getRole());
+            
+            //System.out.println(consulta);
+            // Se vacía la obra por seguridad
+            user = null;
+            // Ejecución de la consulta
+            codigoError = consulta.executeUpdate();
+            //consulta.executeUpdate();
+            
+        } catch (Exception e) {
+            codigoError = 0;
+            System.out.println("Error en el INSERT de la clase ModelUserDAO función agregarUsuario()");
+            System.out.println(consulta);
+        } finally {
+            try {
+                // Cierre de la conexión
+                if (resultado != null) {
+                    GestionBaseDeDatos.closeResulset(resultado);
+                }
+                if (consulta != null) {
+                    GestionBaseDeDatos.closeRequest(consulta);
+                }
+                if (conexion != null) {
+                    GestionBaseDeDatos.closeConnection(conexion);
+                }
+            } catch (Exception ex) {
+                System.out.println("Error en el cierre de la conexión con la base de datos en la clase ModelUserDAO función agregarUsuario()");
+            }
+        }
+        // Devolver el código de error
+        return codigoError;
+    }
+    
+    // eliminar un cliente en la base
+    public int eliminarUsuario(String userId) {
+        // Variables
+        PreparedStatement consulta = null;
+        String consultaString = null;
+        int codigoError = 0;
+        try {
+            // Apertura de una conexión
+            conexion = super.getConnection();
+            // Eliminar el obra
+            consultaString = "DELETE FROM tb_user WHERE user=?";
+            consulta = conexion.prepareStatement(consultaString);
+            consulta.setString(1, userId);
+
+            // Ejecución de la consulta
+            codigoError = consulta.executeUpdate();
+            System.out.println(consultaString);
+            System.out.println(consulta);
+        } catch (Exception e) {
+            codigoError = 0;
+            System.out.println("Error en la consulta de la clase ModeloUserDAO función eliminarUsuario");
+        } finally {
+            try {
+                // Cierre de la conexión
+                if (resultado != null) {
+                    GestionBaseDeDatos.closeResulset(resultado);
+                }
+                if (consulta != null) {
+                    GestionBaseDeDatos.closeRequest(consulta);
+                }
+                if (conexion != null) {
+                    GestionBaseDeDatos.closeConnection(conexion);
+                }
+            } catch (Exception ex) {
+                System.out.println("Error en el cierre de la conexión con la base de datos en la clase ModeloUsuarioDAO función eliminarUsuario");
+            }
+        }
+
+        // Devolver el código de error
+        return codigoError;
+    }
+    
     // Realizar el mapping relacional hacia objeto 
     public User mapperUser(ResultSet resultado) {
         // Variables 

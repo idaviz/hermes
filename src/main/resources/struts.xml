@@ -10,19 +10,44 @@
     <constant name="struts.custom.i18n.resources" value="global" />
     
     <package name="hermes" extends="struts-default">
+        
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+        
         <action name="index">
             <result>/WEB-INF/jsp/index.jsp</result>
         </action>
         
-        <action name="mainUser" class="aas.hermes.action.MessageAction" method="flightList">
-            <result name="input">/WEB-INF/jsp/user.main.jsp</result>
-            <result>/WEB-INF/jsp/user.main.jsp</result>
+        <action name="main" class="aas.hermes.action.MessageAction" method="main">
+            <exception-mapping exception="java.lang.Exception" result="input" />
+            <result name="input" type="redirect">index</result>
+            <result name="user">/WEB-INF/jsp/user.main.jsp</result>
+            <result name="admin" type="redirect">monitor</result>
         </action>
         
-        <action name="messagesUser" class="aas.hermes.action.MessageAction" method="flightMessages">
+        <action name="monitor" class="aas.hermes.action.MessageAction" method="newMessages">
+            <exception-mapping exception="java.lang.Exception" result="input" />
+            <result name="success">/WEB-INF/jsp/admin.main.jsp</result>
+            <result name="input" type="redirect">index</result>
+        </action>
+        
+        
+        <action name="messages" class="aas.hermes.action.MessageAction" method="flightMessages">
+            <exception-mapping exception="java.lang.Exception" result="input" />
             <result name="success">/WEB-INF/jsp/user.messages.jsp</result>
+            <result name="input" type="redirect">index</result>
         </action>
         
+        <action name="user" class="aas.hermes.action.UserAction">
+            <exception-mapping exception="java.lang.Exception" result="input" />
+            <result name="success">/WEB-INF/jsp/admin.users.jsp</result>
+            <result name="input" type="redirect">index</result>
+        </action>
         
         <!-- Log in / log out -->
         <action name="authenticate">
@@ -31,12 +56,21 @@
         
         <action name="Connect" class="aas.hermes.action.AuthenticateAction" method="connect">
             <result name="input">/WEB-INF/jsp/index.jsp</result>
-            <result type="redirectAction">mainUser</result> 
+            <result type="redirectAction">main</result> 
         </action>
 
         <action name="Disconnect" class="aas.hermes.action.AuthenticateAction" method="disconnect">
             <result type="redirectAction">index</result> 
         </action>
         
+        <!-- CRUD User-->
+         <action name="Agregar_Usuario" class="aas.hermes.action.UserAction" method="agregar">
+            <interceptor-ref name="paramsPrepareParamsStack"/> 
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="input">/WEB-INF/jsp/admin.users.jsp</result>
+            <result name="success" type="redirectAction">user</result>
+        </action>
     </package>
 </struts>

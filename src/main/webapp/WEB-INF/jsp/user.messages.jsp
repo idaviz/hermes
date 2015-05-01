@@ -22,7 +22,7 @@
         <div class="container">
             <div class="container">
                 <!-- Barra de navegación -->
-                <%@ include file="/WEB-INF/jsp/inc/private.navbar.jsp" %>
+                <%@ include file="/WEB-INF/jsp/inc/user.navbar.jsp" %>
                 <div class="row row-offcanvas row-offcanvas-right">
                     <div class="container">
                         <div class="jumbotron">
@@ -49,7 +49,6 @@
                                             <s:if test="smi==\"PSM\"">
                                                 <div class="well well-sm">
                                                     <samp>
-                                                       
                                                         <s:property escapeHtml="false" value="tex"/>
                                                         <br/>
                                                     </samp>

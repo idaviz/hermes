@@ -25,6 +25,7 @@ public class ModelMessageDAO extends ModelDAO {
     ResultSet resultado = null;
     private static List<String> flightList;
     private static List<Message> listaResultados;
+    private static List<Message> newMessages;
 
     /**
      * Devuelve un objeto de la clase Message.
@@ -99,7 +100,7 @@ public class ModelMessageDAO extends ModelDAO {
             System.out.println(consulta);
             // Ejecución de la consulta 
             resultado = consulta.executeQuery();
-System.out.println("Resultado de la consulta >>"+resultado);
+            System.out.println("Resultado de la consulta >>" + resultado);
             // Se almacena el resultado en una lista 
             if (resultado != null) {
                 while (resultado.next()) {
@@ -137,6 +138,61 @@ System.out.println("Resultado de la consulta >>"+resultado);
         return flightList;
     }
     
+    public List<Message> getNewMessages() {
+        // Variables 
+        PreparedStatement consulta = null;
+        Message message = null;
+        String consultaString = null;
+        newMessages = new ArrayList<>();
+
+        try {
+            // Apertura de una conexión 
+            conexion = super.getConnection();
+
+            // consulta de lista de vuelos 
+            //consultaString = "SELECT DISTINCT tex_flt FROM tb_messages WHERE tex_date=CURDATE() ORDER BY tex_flt";
+            consultaString = "SELECT * FROM tb_messages ORDER BY Id DESC LIMIT 10";
+            consulta = conexion.prepareStatement(consultaString);
+            System.out.println(consulta);
+            // Ejecución de la consulta 
+            resultado = consulta.executeQuery();
+            System.out.println("Resultado de la consulta >>"+resultado);
+            // Se almacena el resultado en una lista 
+            if (resultado != null) {
+                while (resultado.next()) {
+                    // Se efectúa el mapping de los atributos con los campos de la tabla SQL 
+                    message = mapperMessage(resultado);
+                    // Se añade el objeto a la lista de obrass
+                    newMessages.add((Message) message);
+                }
+            }
+        } catch (SQLException | ParseException e) {
+            System.out.println("Error en la consulta de la clase ModelMessageDAO función getNewMessages");
+        } finally {
+            try {
+                // Cierre de la conexión 
+                if (resultado != null) {
+
+                    GestionBaseDeDatos.closeResulset(resultado);
+                }
+                if (consulta != null) {
+
+                    GestionBaseDeDatos.closeRequest(consulta);
+                }
+                if (conexion != null) {
+
+                    GestionBaseDeDatos.closeConnection(conexion);
+                }
+            } catch (Exception ex) {
+                System.out.println("Error en el cierre de la conexion con la base de datos en la clase ModelMessageDAO función getNewMessages");
+            }
+        }
+
+        // Devolver la lista de obras
+        System.out.println(newMessages);
+        return newMessages;
+    }
+    
     
     // devolver la lista de obras 
     public List<Message> getListaResultados(String clave) {
@@ -144,7 +200,7 @@ System.out.println("Resultado de la consulta >>"+resultado);
         PreparedStatement consulta = null;
         Message message = null;
         String consultaString = null;
-        listaResultados = new ArrayList<Message>();
+        listaResultados = new ArrayList<>();
 
         try {
             // Apertura de una conexión 

@@ -21,7 +21,7 @@
     <body>
         <div class="container">
             <!-- Barra de navegación -->
-            <%@ include file="/WEB-INF/jsp/inc/user.navbar.jsp" %>
+            <%@ include file="/WEB-INF/jsp/inc/admin.navbar.jsp" %>
             <div class="row row-offcanvas row-offcanvas-right">
                 <div class="container">
                     <div class="jumbotron">
@@ -31,11 +31,25 @@
                     <br>
                     <br>
                     <div class="container">
-                            <s:form class="form-signin" theme="bootstrap" action="messages">
-                                <h2 class="form-signin-heading">Please, choose a flight...</h2>
-                                <s:select name="flight" list="flightList"/>
-                                <s:submit id="login-btn" value="Search" class="btn btn-lg btn-danger btn-block" type="button"/> 
-                            </s:form>
+                        <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp;Latest inbound messages!</h3>
+                        <% response.setIntHeader("Refresh", 60);%>
+                        Last updated:<%= new java.util.Date()%>
+                        <s:iterator value="newMessages">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title"><strong><input type="checkbox" aria-label="...">&nbsp;&nbsp;<s:property value="smi"/></strong>&nbsp;&nbsp;<s:property value="tex_flt"/></h3>
+                                    
+                                </div>
+                                <div class="panel-body">
+                                    <div class="well well-sm">
+                                        <samp>
+                                            <s:property escapeHtml="false" value="tex"/>
+                                            <br/>
+                                        </samp>
+                                    </div>
+                                </div>
+                            </div>
+                        </s:iterator>   
                     </div> <!-- /container -->
                 </div><!--/row-->
             </div><!--/.container-->
