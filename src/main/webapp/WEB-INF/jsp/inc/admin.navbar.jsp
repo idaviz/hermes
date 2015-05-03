@@ -12,8 +12,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
              <ul class="nav navbar-nav">
-                <s:url action="user" var="userInputLink"/>
-                <li><a href="${userInputLink}"><s:text name="User management" /></a></li>                
+                <s:url action="manage" var="userInputLink"/>
+                <li><a href="${userInputLink}">User management</a></li>                
             </ul>
             
             <form class="navbar-form navbar-right" action="Disconnect">

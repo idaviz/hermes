@@ -56,7 +56,6 @@ public class AuthenticateAction extends ActionSupport implements SessionAware {
 
     // descriptores de acceso
     public String connect() {
-        System.out.println("this.user que se busca en la función connect >> "+this.user);
         ModelUserDAO objetoUser = new ModelUserDAO();
         User userFound = new User();
         // buscamos el usuario en la base de datos a partir del usuario introducido

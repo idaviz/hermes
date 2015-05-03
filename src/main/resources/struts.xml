@@ -10,7 +10,7 @@
     <constant name="struts.custom.i18n.resources" value="global" />
     
     <package name="hermes" extends="struts-default">
-        
+        <!--
         <global-results>
             <result name="error">/WEB-INF/jsp/error.jsp</result>
         </global-results>
@@ -18,7 +18,7 @@
         <global-exception-mappings>
             <exception-mapping exception="java.lang.Exception" result="error"/>
         </global-exception-mappings>
-        
+        --> 
         <action name="index">
             <result>/WEB-INF/jsp/index.jsp</result>
         </action>
@@ -43,10 +43,15 @@
             <result name="input" type="redirect">index</result>
         </action>
         
-        <action name="user" class="aas.hermes.action.UserAction">
-            <exception-mapping exception="java.lang.Exception" result="input" />
-            <result name="success">/WEB-INF/jsp/admin.users.jsp</result>
-            <result name="input" type="redirect">index</result>
+        <action name="manage" method="listado" class="aas.hermes.action.UserAction">
+            <!--<exception-mapping exception="java.lang.Exception" result="input" />-->
+           <interceptor-ref name="createSession"/>
+            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="autenticacionInterceptor"/>
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result>/WEB-INF/jsp/admin.users.jsp</result>
         </action>
         
         <!-- Log in / log out -->
@@ -62,15 +67,41 @@
         <action name="Disconnect" class="aas.hermes.action.AuthenticateAction" method="disconnect">
             <result type="redirectAction">index</result> 
         </action>
+        <!-- Log in / log out -->
         
-        <!-- CRUD User-->
+        <!-- Operacinoes CRUD -->
          <action name="Agregar_Usuario" class="aas.hermes.action.UserAction" method="agregar">
             <interceptor-ref name="paramsPrepareParamsStack"/> 
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
             <result name="input">/WEB-INF/jsp/admin.users.jsp</result>
+            <result name="success" type="redirectAction">manage</result>
+        </action>
+        
+        <action name="Eliminar_Usuario" class="aas.hermes.action.UserAction" method="eliminar">
+            <interceptor-ref name="paramsPrepareParamsStack"/>
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result type="redirectAction">user</result>
+        </action>
+        
+        <action name="Editar_Usuario" class="aas.hermes.action.UserAction" method="editar">
+            <interceptor-ref name="paramsPrepareParamsStack"/>
+            <result name="success">/WEB-INF/jsp/admin.edituser.jsp</result>
+            <result name="input" type="redirect">user</result>
+        </action>
+        
+        <action name="Modificar_Usuario" class="aas.hermes.action.UserAction" method="modificar">
+            <interceptor-ref name="paramsPrepareParamsStack"/>
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="input">/WEB-INF/jsp/admin.edituser.jsp</result>
             <result name="success" type="redirectAction">user</result>
         </action>
+        <!-- Operaciones CRUD -->
+        
     </package>
 </struts>

@@ -97,10 +97,8 @@ public class ModelMessageDAO extends ModelDAO {
             //consultaString = "SELECT DISTINCT tex_flt FROM tb_messages WHERE tex_date=CURDATE() ORDER BY tex_flt";
             consultaString = "SELECT * FROM tb_messages GROUP BY tex_flt";
             consulta = conexion.prepareStatement(consultaString);
-            System.out.println(consulta);
             // Ejecución de la consulta 
             resultado = consulta.executeQuery();
-            System.out.println("Resultado de la consulta >>" + resultado);
             // Se almacena el resultado en una lista 
             if (resultado != null) {
                 while (resultado.next()) {
@@ -134,7 +132,6 @@ public class ModelMessageDAO extends ModelDAO {
         }
 
         // Devolver la lista de obras
-        System.out.println(flightList);
         return flightList;
     }
     
@@ -153,10 +150,8 @@ public class ModelMessageDAO extends ModelDAO {
             //consultaString = "SELECT DISTINCT tex_flt FROM tb_messages WHERE tex_date=CURDATE() ORDER BY tex_flt";
             consultaString = "SELECT * FROM tb_messages ORDER BY Id DESC LIMIT 10";
             consulta = conexion.prepareStatement(consultaString);
-            System.out.println(consulta);
             // Ejecución de la consulta 
             resultado = consulta.executeQuery();
-            System.out.println("Resultado de la consulta >>"+resultado);
             // Se almacena el resultado en una lista 
             if (resultado != null) {
                 while (resultado.next()) {
@@ -189,7 +184,6 @@ public class ModelMessageDAO extends ModelDAO {
         }
 
         // Devolver la lista de obras
-        System.out.println(newMessages);
         return newMessages;
     }
     
@@ -208,18 +202,14 @@ public class ModelMessageDAO extends ModelDAO {
 
             // consulta de lista de obras 
             consultaString = "SELECT * FROM tb_messages WHERE tex_flt LIKE '%" + clave + "%'";
-
             consulta = conexion.prepareStatement(consultaString);
-
             // Ejecución de la consulta 
             resultado = consulta.executeQuery();
-
             // Se almacena el resultado en una lista 
             if (resultado != null) {
                 while (resultado.next()) {
                     // Se efectúa el mapping de los atributos con los campos de la tabla SQL 
                     message = mapperMessage(resultado);
-
                     // Se añade el objeto a la lista de obrass
                     listaResultados.add((Message) message);
                 }
@@ -230,15 +220,12 @@ public class ModelMessageDAO extends ModelDAO {
             try {
                 // Cierre de la conexión 
                 if (resultado != null) {
-
                     GestionBaseDeDatos.closeResulset(resultado);
                 }
                 if (consulta != null) {
-
                     GestionBaseDeDatos.closeRequest(consulta);
                 }
                 if (conexion != null) {
-
                     GestionBaseDeDatos.closeConnection(conexion);
                 }
             } catch (Exception ex) {
