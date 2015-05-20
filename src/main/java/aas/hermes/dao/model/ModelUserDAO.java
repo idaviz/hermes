@@ -92,7 +92,6 @@ public class ModelUserDAO extends ModelDAO {
             // Apertura de una conexión 
             conexion = super.getConnection();
             // Creación de la consulta 
-            System.out.println("Voy a realizar un SELECT con el user="+idUser);
             consultaString = "SELECT * FROM tb_user WHERE id_tb_user=?";
             // Se prepara la consulta
             consulta = conexion.prepareStatement(consultaString);
@@ -104,9 +103,6 @@ public class ModelUserDAO extends ModelDAO {
                 if (resultado.next()) {
                     // Se realiza el mapping de los atributos con los campos de la tabla SQL 
                     usuario = mapperUser(resultado);
-                    System.out.println(usuario.getUser());
-                    System.out.println(usuario.getPassword());
-                    System.out.println(usuario.getRole());
                 }
             }
         } catch (Exception e) {
@@ -142,7 +138,6 @@ public class ModelUserDAO extends ModelDAO {
             // Apertura de una conexión 
             conexion = super.getConnection();
             // Creación de la consulta 
-           
             consultaString = "SELECT * FROM tb_user WHERE user=?";
             // Se prepara la consulta
             consulta = conexion.prepareStatement(consultaString);
@@ -154,9 +149,6 @@ public class ModelUserDAO extends ModelDAO {
                 if (resultado.next()) {
                     // Se realiza el mapping de los atributos con los campos de la tabla SQL 
                     usuario = mapperUser(resultado);
-                    System.out.println(usuario.getUser());
-                    System.out.println(usuario.getPassword());
-                    System.out.println(usuario.getRole());
                 }
             }
         } catch (Exception e) {
@@ -199,7 +191,6 @@ public class ModelUserDAO extends ModelDAO {
             consulta.setString(1, user.getUser());
             consulta.setString(2, user.getPassword());
             consulta.setString(3, user.getRole());
-            System.out.println(consulta);
             // Se vacía la obra por seguridad
             user = null;
             // Ejecución de la consulta
@@ -284,6 +275,7 @@ public class ModelUserDAO extends ModelDAO {
             consulta.setString(1, user.getUser());
             consulta.setString(2, user.getPassword());
             consulta.setString(3, user.getRole());
+            consulta.setString(4, user.getUser());
             // Se vacía el cliente por seguridad
             user = null;
             // Ejecución de la consulta

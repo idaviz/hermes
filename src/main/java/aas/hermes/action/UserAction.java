@@ -20,11 +20,18 @@ public class UserAction extends ActionSupport implements Preparable, ModelDriven
 
     private List<User> listaUsuarios;
     private User usuario;
-    private String idUser;
     private String user;
     private String password;
     private String role;
     private int id_tb_user;
+
+    public int getId_tb_user() {
+        return id_tb_user;
+    }
+
+    public void setId_tb_user(int id_tb_user) {
+        this.id_tb_user = id_tb_user;
+    }
 
 
     public String getUser() {
@@ -41,10 +48,11 @@ public class UserAction extends ActionSupport implements Preparable, ModelDriven
         // en creación, crear un nuevo objeto vacío 
         System.out.println("Valor del campo user que llega a UserAction: "+this.user);
         if (this.id_tb_user == 0) {
-            usuario = new User();
+            usuario = new User(user,password,role);
+            System.out.println("Creación de nuevo usuario");
         }else {
             usuario = modelUserDAO.getUser(this.id_tb_user);
-            System.out.println("Valor del Password del usuario recuperado: "+this.user );
+            System.out.println("Modificación de usuario");
         }
     }
     
@@ -115,18 +123,10 @@ public class UserAction extends ActionSupport implements Preparable, ModelDriven
 
     // modificar una obra
     public String modificar() {
-        if (this.usuario.getUser().equals("") || this.usuario.getUser().length() < 1 || this.usuario.getUser().length() > 12) {
-            addFieldError("user", "USER length between 1 and 12 characters");
-            return "input";
-        } else if (this.usuario.getPassword().equals("") || this.usuario.getPassword().length() < 1 || this.usuario.getPassword().length() > 20) {
-            addFieldError("password", "Password length between 1 and 20 characters");
-            return "input";
-        } else {
             ModelUserDAO ModelUserDAO = new ModelUserDAO();
-            ModelUserDAO.modificarUsuario(usuario);
-            addActionMessage(this.usuario.getUser() + ": Changes successfully saved.");
+            ModelUserDAO.modificarUsuario(this.usuario);
             return SUCCESS;
-        }
+        
     }
 
     // eliminar un usuario a partir del parámetro recibido llamado userId

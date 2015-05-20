@@ -35,18 +35,18 @@
                         <s:form name="doc" class="form-vertical" theme="bootstrap" cssClass="form-vertical well" method="post" action="Agregar_Usuario" >
                             <s:textfield name="user" id="user" label="User name" class="form-control" placeholder="Type here the user name..."/>
                             <s:textfield name="password" id="password" label="Password" class="form-control" placeholder="Type here the user password"/>
-                            <!--<s:radio
+                            <s:radio
                                 label="Role"
                                 id="role"
                                 labelposition="inline"
                                 list="{'admin', 'user'}"
-                                name="role"/>-->
+                                name="role"/>
                             <br>
                             <s:submit value="Create user" class="btn btn-primary" cssClass="btn btn-primary" type="button" />
                         </s:form>
 
 
-                        <h4>Active users lists</h4>
+                        <h4>Active users list</h4>
                         <br>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover table-bordered">
@@ -62,7 +62,7 @@
                                         <td><s:property value="user"/></td>
                                         <td><s:property value="password"/></td>
                                         <td><s:property value="role"/></td>
-                                        <td><a href="Editar_Usuario.action?user=${user}"/><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a></td>
+                                        <td><a href="Editar_Usuario.action?id_tb_user=${id_tb_user}&user=${user}&password=${password}&role=${role}"/><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a></td>
                                         <td><a href="Eliminar_Usuario.action?user=${user}"/><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
                                     </tr>
                                 </s:iterator>

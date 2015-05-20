@@ -82,13 +82,12 @@
             <interceptor-ref name="store">
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
-            <result type="redirectAction">user</result>
+            <result type="redirectAction">manage</result>
         </action>
         
         <action name="Editar_Usuario" class="aas.hermes.action.UserAction" method="editar">
             <interceptor-ref name="paramsPrepareParamsStack"/>
             <result name="success">/WEB-INF/jsp/admin.edituser.jsp</result>
-            <result name="input" type="redirect">user</result>
         </action>
         
         <action name="Modificar_Usuario" class="aas.hermes.action.UserAction" method="modificar">
@@ -97,7 +96,7 @@
                 <param name="operationMode">STORE</param>
             </interceptor-ref>
             <result name="input">/WEB-INF/jsp/admin.edituser.jsp</result>
-            <result name="success" type="redirectAction">user</result>
+            <result name="success" type="redirectAction">manage</result>
         </action>
         <!-- Operaciones CRUD -->
         
