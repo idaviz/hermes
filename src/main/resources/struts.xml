@@ -44,10 +44,8 @@
         </action>
         
         <action name="manage" method="listado" class="aas.hermes.action.UserAction">
-            <!--<exception-mapping exception="java.lang.Exception" result="input" />-->
            <interceptor-ref name="createSession"/>
-            <interceptor-ref name="defaultStack"/>
-            <interceptor-ref name="autenticacionInterceptor"/>
+            <interceptor-ref name="defaultStack"/>      
             <interceptor-ref name="store">
                 <param name="operationMode">RETRIEVE</param>
             </interceptor-ref>

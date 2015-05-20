@@ -287,7 +287,6 @@ public class ModelMessageDAO extends ModelDAO {
             //Si se produce un error durante el mapping de atributos 
             message = null;
             System.out.println("Error en el mapping de atributos de Message de la clase ModelMessageDAO, función mapperMessage");
-            e.printStackTrace();
         }
         // Devolver objeto message 
         return message;

@@ -33,14 +33,14 @@
                     <div class="container">
                         <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Add a new user</h3>
                         <s:form name="doc" class="form-vertical" theme="bootstrap" cssClass="form-vertical well" method="post" action="Agregar_Usuario" >
-                            <s:textfield name="user" id="user" label="User name" class="form-control" placeholder="Type here the user name..." tooltip="min 5 and max 12 characters"/>
+                            <s:textfield name="user" id="user" label="User name" class="form-control" placeholder="Type here the user name..."/>
                             <s:textfield name="password" id="password" label="Password" class="form-control" placeholder="Type here the user password"/>
-                            <s:radio
+                            <!--<s:radio
                                 label="Role"
                                 id="role"
                                 labelposition="inline"
                                 list="{'admin', 'user'}"
-                                name="role"/>
+                                name="role"/>-->
                             <br>
                             <s:submit value="Create user" class="btn btn-primary" cssClass="btn btn-primary" type="button" />
                         </s:form>

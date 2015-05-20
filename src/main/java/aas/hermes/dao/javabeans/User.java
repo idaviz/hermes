@@ -11,8 +11,9 @@ public class User {
     private String user;
     private String password;
     private String role;
+    private int id_tb_user;
 
-    public User() {
+     public User() {
     }
 
     public User(String user, String password, String role) {
@@ -21,6 +22,14 @@ public class User {
         this.role = role;
     }
     
+    public int getId_tb_user() {
+        return id_tb_user;
+    }
+
+    public void setId_tb_user(int id_tb_user) {
+        this.id_tb_user = id_tb_user;
+    }
+        
     public String getUser() {
         return user;
     }

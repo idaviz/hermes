@@ -20,22 +20,31 @@ public class UserAction extends ActionSupport implements Preparable, ModelDriven
 
     private List<User> listaUsuarios;
     private User usuario;
+    private String idUser;
     private String user;
     private String password;
     private String role;
+    private int id_tb_user;
+
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
      @Override
     public void prepare() throws Exception {
         ModelUserDAO modelUserDAO = new ModelUserDAO();
         // en creación, crear un nuevo objeto vacío 
-        if (user == null) {
-            System.out.println("prepare, user = null");
+        System.out.println("Valor del campo user que llega a UserAction: "+this.user);
+        if (this.id_tb_user == 0) {
             usuario = new User();
-        } // en modificación, devolver la información del objeto 
-        else {
-            System.out.println("prepare, user not null");
-            usuario = modelUserDAO.getUser(user);
-            System.out.println(usuario);
+        }else {
+            usuario = modelUserDAO.getUser(this.id_tb_user);
+            System.out.println("Valor del Password del usuario recuperado: "+this.user );
         }
     }
     
@@ -48,14 +57,6 @@ public class UserAction extends ActionSupport implements Preparable, ModelDriven
 
     public void setUsuario(User usuario) {
         this.usuario = usuario;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
     }
 
     public List<User> getListaUsuarios() {
@@ -96,7 +97,7 @@ public class UserAction extends ActionSupport implements Preparable, ModelDriven
     // agregar el obra al modelo
     public String agregar() {
         ModelUserDAO ModelUserDAO = new ModelUserDAO();
-        ModelUserDAO.agregarUsuario(usuario);
+        ModelUserDAO.agregarUsuario(this.usuario);
         return SUCCESS;
     }
 

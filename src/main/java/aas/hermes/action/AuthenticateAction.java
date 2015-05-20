@@ -19,6 +19,7 @@ public class AuthenticateAction extends ActionSupport implements SessionAware {
     private String user;
     private String password;
     private String role;
+    
     private Map<String, Object> sessionMap;
 
     public String getUser() {
@@ -59,7 +60,7 @@ public class AuthenticateAction extends ActionSupport implements SessionAware {
         ModelUserDAO objetoUser = new ModelUserDAO();
         User userFound = new User();
         // buscamos el usuario en la base de datos a partir del usuario introducido
-        userFound = objetoUser.getUser(this.user);
+        userFound = objetoUser.getUserByUser(this.user);
         // verificar si se ha introducido un identificador y una contraseña
         if ((user != null && password != null)&&(userFound!=null)) {
             //verificar si el usuari recuperado de la base de datos coincide con el usuario introducido

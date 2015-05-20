@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import aas.hermes.db.GestionBaseDeDatos;
 import aas.hermes.dao.javabeans.User;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,33 +83,34 @@ public class ModelUserDAO extends ModelDAO {
     
     
     
-    public User getUser(String idUser) {
+    public User getUser(int idUser) {
         // Variables 
         PreparedStatement consulta = null;
-        User user = null;
+        User usuario = null;
         String consultaString = null;
         try {
             // Apertura de una conexión 
             conexion = super.getConnection();
             // Creación de la consulta 
-            consultaString = "SELECT * FROM tb_user WHERE user=?";
+            System.out.println("Voy a realizar un SELECT con el user="+idUser);
+            consultaString = "SELECT * FROM tb_user WHERE id_tb_user=?";
             // Se prepara la consulta
             consulta = conexion.prepareStatement(consultaString);
-            consulta.setString(1, idUser);
+            consulta.setInt(1, idUser);
             // Ejecución de la consulta 
             resultado = consulta.executeQuery();
             // Se almacena el resultado en el objeto usuario 
             if (resultado != null) {
                 if (resultado.next()) {
                     // Se realiza el mapping de los atributos con los campos de la tabla SQL 
-                    user = mapperUser(resultado);
-                    System.out.println(user.getUser());
-                    System.out.println(user.getPassword());
-                    System.out.println(user.getRole());
+                    usuario = mapperUser(resultado);
+                    System.out.println(usuario.getUser());
+                    System.out.println(usuario.getPassword());
+                    System.out.println(usuario.getRole());
                 }
             }
         } catch (Exception e) {
-            user = null;
+            usuario = null;
             System.err.println("Error en la consulta en la clase ModelUserDAO función getUser");
         } finally {
             try {
@@ -127,9 +129,60 @@ public class ModelUserDAO extends ModelDAO {
             }
         }
         // Devolver objeto usuario 
-        return user;
+        return usuario;
     }
 
+    
+    public User getUserByUser(String idUser) {
+        // Variables 
+        PreparedStatement consulta = null;
+        User usuario = null;
+        String consultaString = null;
+        try {
+            // Apertura de una conexión 
+            conexion = super.getConnection();
+            // Creación de la consulta 
+           
+            consultaString = "SELECT * FROM tb_user WHERE user=?";
+            // Se prepara la consulta
+            consulta = conexion.prepareStatement(consultaString);
+            consulta.setString(1, idUser);
+            // Ejecución de la consulta 
+            resultado = consulta.executeQuery();
+            // Se almacena el resultado en el objeto usuario 
+            if (resultado != null) {
+                if (resultado.next()) {
+                    // Se realiza el mapping de los atributos con los campos de la tabla SQL 
+                    usuario = mapperUser(resultado);
+                    System.out.println(usuario.getUser());
+                    System.out.println(usuario.getPassword());
+                    System.out.println(usuario.getRole());
+                }
+            }
+        } catch (Exception e) {
+            usuario = null;
+            System.err.println("Error en la consulta en la clase ModelUserDAO función getUser");
+        } finally {
+            try {
+                // Cierre de la conexión 
+                if (resultado != null) {
+                    GestionBaseDeDatos.closeResulset(resultado);
+                }
+                if (consulta != null) {
+                    GestionBaseDeDatos.closeRequest(consulta);
+                }
+                if (conexion != null) {
+                    GestionBaseDeDatos.closeConnection(conexion);
+                }
+            } catch (Exception ex) {
+                System.out.println("Error en el cierre de la conexión con la base de datos en la clase ModelUserDAO función getUser");
+            }
+        }
+        // Devolver objeto usuario 
+        return usuario;
+    }
+    
+    
     // agregar un usuario a la base
     public int agregarUsuario(User user) {
         // Variables
@@ -260,10 +313,16 @@ public class ModelUserDAO extends ModelDAO {
               return codigoError;
     }
     // Realizar el mapping relacional hacia objeto 
-    public User mapperUser(ResultSet resultado) {
+    public User mapperUser(ResultSet resultado) throws ParseException {
         // Variables 
         User user = new User();
         try {
+            if (resultado.getString("id_tb_user")== null) {
+                user.setId_tb_user(0);
+            } else {
+                user.setId_tb_user(resultado.getInt("id_tb_user"));
+            }
+            
             if (resultado.getString("user") == null) {
                 user.setUser("");
             } else {
