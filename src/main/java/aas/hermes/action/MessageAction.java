@@ -20,6 +20,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
+/**
+ * Clase de acción que proporciona operaciones con mensajes.
+ * @author dgarcia25
+ */
 public class MessageAction extends ActionSupport implements SessionAware, Preparable, ModelDriven {
 
     private Message message;
@@ -33,62 +37,124 @@ public class MessageAction extends ActionSupport implements SessionAware, Prepar
     private List<Message> listaResultados;
     private List<Message> newMessages;
 
+    /**
+     * Devuelve una lista con los 10 últimos mensajes añadidos a la base de
+     * datos.
+     * @return Lista de mensajes.
+     */
     public List<Message> getNewMessages() {
         return newMessages;
     }
 
+    /**
+     * Asigna un valor a la lista de los 10 últimos mensajes.
+     * @param newMessages Lista de mensajes.
+     */
     public void setNewMessages(List<Message> newMessages) {
         this.newMessages = newMessages;
     }
 
+    /**
+     * Devuelve los valores de la sesión de usuario actual.
+     * @return Valores de la sesión de usuario.
+     */
     public Map<String, Object> getSessionMap() {
         return sessionMap;
     }
 
+    /**
+     *  Asigna valores a una sesión de usuario.
+     * @param sessionMap Valores para la sesión de usuario.
+     */
     public void setSessionMap(Map<String, Object> sessionMap) {
         this.sessionMap = sessionMap;
     }
 
+    /**
+     * Recupera un número de vuelo.
+     * @return Número de vuelo.
+     */
     public String getFlight() {
         return flight;
     }
 
+    /**
+     * Asigna un número de vuelo.
+     * @param flight Número de vuelo.
+     */
     public void setFlight(String flight) {
         this.flight = flight;
     }
 
+    /**
+     * Recupera un identificador de tipo de mensaje.
+     * @return Identificador de tipo de mensaje.
+     */
     public String getSmi() {
         return smi;
     }
 
+    /**
+     * Asigna un identificador de tipo de mensaje.
+     * @param smi
+     */
     public void setSmi(String smi) {
         this.smi = smi;
     }
 
+    /**
+     * Recupera un identificador de mensaje.
+     * @return Identificador de mensaje.
+     */
     public int getIdMessage() {
         return idMessage;
     }
 
+    /**
+     * Asigna un identificador de mensaje.
+     * @param idMessage Identificador de mensaje.
+     */
     public void setIdMessage(int idMessage) {
         this.idMessage = idMessage;
     }
 
+    /**
+     * Recupera un mensaje.
+     * @return Mensaje.
+     */
     public Message getMessage() {
         return message;
     }
 
+    /**
+     * Asigna valor a un mensaje.
+     * @param message Valor del mensaje.
+     */
     public void setMessage(Message message) {
         this.message = message;
     }
 
+    /**
+     * Recupera un número de vuelo.
+     * @return Número de vuelo.
+     */
     public String getFlightNumber() {
         return flightNumber;
     }
 
+    /**
+     * Asigna un número de vuelo.
+     * @param flightNumber Número de vuelo.
+     */
     public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
     }
 
+    /**
+     * Recupera una lista de números de vuelo.
+     * @return Lista de números de vuelo.
+     * 
+     */
     public List<String> getFlightList() {
 
         ModelMessageDAO ModelMessageDAO = new ModelMessageDAO();
@@ -96,14 +162,26 @@ public class MessageAction extends ActionSupport implements SessionAware, Prepar
         return flightList;
     }
 
+    /**
+     * Asigna valor a una lista de números de vuelo.
+     * @param flightList Lista de números de vuelo.
+     */
     public void setFlightList(List<String> flightList) {
         this.flightList = flightList;
     }
 
+    /**
+     * Recupera el identificador de un número de vuelo.
+     * @return Identificador del número de vuelo.
+     */
     public int getIdFlight() {
         return idFlight;
     }
 
+    /**
+     * Asigna un valor al identificador del número de vuelo.
+     * @param idFlight Identificador del número de vuelo.
+     */
     public void setIdFlight(int idFlight) {
         this.idFlight = idFlight;
     }
@@ -143,8 +221,11 @@ public class MessageAction extends ActionSupport implements SessionAware, Prepar
         return message;
     }
 
-    // devolver la lista de clientes tras la recuperación 
-    public String main() {
+    /**
+     * Devuelve una lista de usuarios.
+     * @return Lista de usuarios.
+     */
+        public String main() {
         // esta acción requiere sesión de usuario, por lo que se comprueba.
         HttpSession session = ServletActionContext.getRequest().getSession(false);
         if (session.getAttribute("role").equals("user")) {
@@ -158,6 +239,10 @@ public class MessageAction extends ActionSupport implements SessionAware, Prepar
         return "input";
     }
 
+    /**
+     * Devuelve una lista de mensajes de vuelo.
+     * @return Lista de mensajes de vuelos.
+     */
     public String flightMessages() {
         // esta acción requiere sesión de usuario, por lo que se comprueba.
         HttpSession session = ServletActionContext.getRequest().getSession(false);
@@ -172,14 +257,26 @@ public class MessageAction extends ActionSupport implements SessionAware, Prepar
         }
     }
 
+    /**
+     * Devuelve una lista de mensajes.
+     * @return Lista de mensajes.
+     */
     public List<Message> getListaResultados() {
         return listaResultados;
     }
 
+    /**
+     * Asigna una lista de mensajes a la lista de resultados.
+     * @param listaResultados Lista de mensajes.
+     */
     public void setListaResultados(List<Message> listaResultados) {
         this.listaResultados = listaResultados;
     }
 
+    /**
+     * Devuelve una lista con los 10 últimos mensajes.
+     * @return Lista de mensajes.
+     */
     public String newMessages() {
         // esta acción requiere sesión de usuario, por lo que se comprueba.
         HttpSession session = ServletActionContext.getRequest().getSession(false);

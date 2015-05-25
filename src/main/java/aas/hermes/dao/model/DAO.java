@@ -9,8 +9,14 @@ package aas.hermes.dao.model;
  */
 import java.sql.Connection;
 
+/**
+ * @author dgarcia25
+ */
 public interface DAO {
 
-       // Definición del método a declarar en las clases de los usuarios 
-       public Connection getConnection(); 
+    /**
+     * Método para tomar una conexión del pool de conexiones.
+     * @return
+     */
+    public Connection getConnection(); 
 }

@@ -32,9 +32,9 @@
                     <br>
                     <div class="container">
                         <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Edit users details</h3>
-                        <s:form acceptcharset="UTF-8" name="doc" class="form-vertical" theme="bootstrap" cssClass="form-vertical well" method="post" action="Modificar_Usuario" >
-                                    
-                            <s:textfield name="user" id="user" label="User name" class="form-control" placeholder="Type here the user name..." tooltip="min 5 and max 12 characters"/>                     <s:textfield name="password" id="password" label="Password" class="form-control" placeholder="Type here the user password"/>
+                        <s:form acceptcharset="UTF-8" name="doc" class="form-vertical" theme="bootstrap" cssClass="form-vertical well" method="post" action="Modificar_Usuario" >          
+                            <s:textfield name="user" id="user" label="User name" readonly="true" class="form-control" placeholder="Type here the user name..." tooltip="min 5 and max 12 characters"/>                     
+                            <s:textfield name="password" id="password" label="Password" class="form-control" placeholder="Type here the user password"/>
                             <s:radio
                                 label="Role"
                                 id="role"
@@ -44,6 +44,9 @@
                             <br>
                             <s:submit value="Update user" class="btn btn-primary" cssClass="btn btn-primary" type="button" />
                         </s:form>
+                        <s:if test="hasActionMessages()">
+                            <s:actionmessage theme="bootstrap"/>
+                        </s:if>
                     </div> <!-- /container -->
                 </div><!--/row-->
             </div><!--/.container-->

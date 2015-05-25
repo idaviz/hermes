@@ -16,12 +16,18 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author dgarcia25
+ */
 public class ModelUserDAO extends ModelDAO {
 
     Connection conexion = null;
     ResultSet resultado = null;
     private static List<User> listaUsuarios;
 
+    /**
+     * @return
+     */
     public List<User> getListaUsuarios() {
         // Variables 
         PreparedStatement consulta = null;
@@ -77,12 +83,17 @@ public class ModelUserDAO extends ModelDAO {
         return listaUsuarios;
     }
 
+    /**
+     * @param listaUsuarios
+     */
     public static void setListaUsuarios(List<User> listaUsuarios) {
         ModelUserDAO.listaUsuarios = listaUsuarios;
     }
     
-    
-    
+    /**
+     * @param idUser
+     * @return
+     */
     public User getUser(int idUser) {
         // Variables 
         PreparedStatement consulta = null;
@@ -128,7 +139,10 @@ public class ModelUserDAO extends ModelDAO {
         return usuario;
     }
 
-    
+    /** 
+     * @param idUser
+     * @return 
+     */
     public User getUserByUser(String idUser) {
         // Variables 
         PreparedStatement consulta = null;
@@ -174,9 +188,12 @@ public class ModelUserDAO extends ModelDAO {
         return usuario;
     }
     
-    
-    // agregar un usuario a la base
-    public int agregarUsuario(User user) {
+
+    /**
+     * @param user
+     * @return
+     */
+        public int agregarUsuario(User user) {
         // Variables
         PreparedStatement consulta = null;
         String consultaString = null;
@@ -219,8 +236,12 @@ public class ModelUserDAO extends ModelDAO {
         return codigoError;
     }
     
-    // eliminar un cliente en la base
-    public int eliminarUsuario(String userId) {
+   
+    /**
+     * @param userId
+     * @return 
+     */
+        public int eliminarUsuario(String userId) {
         // Variables
         PreparedStatement consulta = null;
         String consultaString = null;
@@ -260,7 +281,10 @@ public class ModelUserDAO extends ModelDAO {
         return codigoError;
     }
     
-    // modificar una obra en la base
+    /** 
+     * @param user
+     * @return 
+     */
     public int modificarUsuario(User user) {
         // Variables
         PreparedStatement consulta = null;
@@ -305,7 +329,13 @@ public class ModelUserDAO extends ModelDAO {
               return codigoError;
     }
     // Realizar el mapping relacional hacia objeto 
-    public User mapperUser(ResultSet resultado) throws ParseException {
+
+    /**
+     * @param resultado
+     * @return
+     * @throws ParseException
+     */
+        public User mapperUser(ResultSet resultado) throws ParseException {
         // Variables 
         User user = new User();
         try {

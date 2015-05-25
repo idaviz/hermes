@@ -15,6 +15,10 @@
                 <s:url action="manage" var="userInputLink"/>
                 <li><a href="${userInputLink}">User management</a></li>                
             </ul>
+            <ul class="nav navbar-nav">
+                <s:url action="monitor" var="monitorInputLink"/>
+                <li><a href="${monitorInputLink}">Inbound monitoring</a></li>                
+            </ul>
             
             <form class="navbar-form navbar-right" action="Disconnect">
                 <s:set name="usuario" value="#session.user"/>

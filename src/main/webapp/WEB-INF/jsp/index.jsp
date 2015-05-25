@@ -37,6 +37,11 @@
                             <s:password name="password" id="password" class="form-control" placeholder="Your password"/>
                             <s:submit id="login-btn" value="Log in" class="btn btn-lg btn-danger btn-block" type="button"/> 
                         </s:form>
+                        <br>
+                        <s:actionerror theme="bootstrap"/>
+                        <s:if test="hasActionMessages()">
+                            <s:actionmessage theme="bootstrap"/>
+                        </s:if>
                     </div> <!-- /container -->
                 </div><!--/row-->
 

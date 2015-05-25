@@ -44,7 +44,10 @@
                             <br>
                             <s:submit value="Create user" class="btn btn-primary" cssClass="btn btn-primary" type="button" />
                         </s:form>
-
+                        <s:actionerror theme="bootstrap"/>
+                        <s:if test="hasActionMessages()">
+                            <s:actionmessage theme="bootstrap"/>
+                        </s:if>
 
                         <h4>Active users list</h4>
                         <br>

@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author dgarcia25
+ */
 public class ModelMessageDAO extends ModelDAO {
 
     Connection conexion = null;
@@ -82,6 +85,9 @@ public class ModelMessageDAO extends ModelDAO {
         return message;
     }
 
+    /**
+     * @return
+     */
     public List<String> getFlightList() {
         // Variables 
         PreparedStatement consulta = null;
@@ -135,6 +141,9 @@ public class ModelMessageDAO extends ModelDAO {
         return flightList;
     }
     
+    /**
+     * @return
+     */
     public List<Message> getNewMessages() {
         // Variables 
         PreparedStatement consulta = null;
@@ -189,7 +198,12 @@ public class ModelMessageDAO extends ModelDAO {
     
     
     // devolver la lista de obras 
-    public List<Message> getListaResultados(String clave) {
+
+    /**
+     * @param clave
+     * @return
+     */
+        public List<Message> getListaResultados(String clave) {
         // Variables 
         PreparedStatement consulta = null;
         Message message = null;
@@ -239,7 +253,13 @@ public class ModelMessageDAO extends ModelDAO {
     
 
     // Realizar el mapping relacional hacia objeto 
-    public Message mapperMessage(ResultSet resultado) throws ParseException {
+
+    /**
+     * @param resultado
+     * @return 
+     * @throws ParseException
+     */
+        public Message mapperMessage(ResultSet resultado) throws ParseException {
         // Variables 
         Message message = new Message();
         try {

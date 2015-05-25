@@ -14,12 +14,19 @@ import javax.sql.DataSource;
 import org.apache.struts2.ServletActionContext;
 
 // Clase de conexión 
+
+/**
+ * @author dgarcia25
+ */
 public class ModelDAO implements DAO {
 
     DataSource dataSource = null;
 
     // Recuperar una conexión 
     @Override
+   /**
+    * Establece una conexión con la fuente de datos.
+    */
     public Connection getConnection() {
         ServletContext servletContext = ServletActionContext.getServletContext();
         if (this.dataSource == null) {
@@ -39,7 +46,11 @@ public class ModelDAO implements DAO {
     }
 
     // Posicionar una dataSource 
-    public void setConnection(DataSource dataSource) {
+
+    /**
+     * @param dataSource
+     */
+        public void setConnection(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 }

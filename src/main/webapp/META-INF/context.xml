@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context crossContext="true" docBase="hermes" path="/hermes" reloadable="true">
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/AccesoBD" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/hermes" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" 
+            maxActive="100" maxIdle="30" maxWait="10000" name="jdbc/AccesoBD" 
+            password="root" type="javax.sql.DataSource" 
+            url="jdbc:mysql://localhost:3306/hermes" username="root"/>
 </Context>

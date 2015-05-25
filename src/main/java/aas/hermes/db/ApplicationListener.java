@@ -15,13 +15,22 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener; 
 import javax.sql.DataSource;
 
+/**
+ * Clase para establecer las conexiones con el pool de conexiones.
+ * @author dgarcia25
+ */
 public class ApplicationListener implements 
 ServletContextListener{
 
        Context context=null;
 
-       //función llamada durante la creación del iniciador 
-       @Override
+       
+
+    /**
+     * Crea la conexión con el pool.
+     * @param servletContextEvent Solicitud de creación.
+     */
+           @Override
        public void contextInitialized(ServletContextEvent servletContextEvent) 
        { 
               ServletContext servletContext=servletContextEvent.getServletContext(); 
@@ -63,7 +72,12 @@ ServletContextListener{
        }
 
        //función llamada durante la destrucción del iniciador 
-       @Override
+
+    /**
+     * Libera el pool de conexiones.
+     * @param servletContextEvent
+     */
+           @Override
        public void contextDestroyed(ServletContextEvent servletContextEvent) 
        { 
               try 
